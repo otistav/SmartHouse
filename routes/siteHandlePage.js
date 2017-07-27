@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var adminRequire = require('../middleWares/adminRequaire');
+var adminRequire = require('../Utils/middleWares/adminRequaire');
 
 /* GET users listing. */
 router.get('/',adminRequire, function(req, res, next) {

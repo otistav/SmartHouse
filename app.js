@@ -15,7 +15,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var signInPage = require('./routes/sighnInPage');
+var signInPage = require('./routes/logIn');
 var siteHandlePage = require('./routes/siteHandlePage');
 var logOutPage = require('./routes/logOutPage');
 
