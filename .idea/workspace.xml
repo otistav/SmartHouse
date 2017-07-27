@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b920d020-89ed-4291-9aed-2d0677ebeaca" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Utils/Errors/ValidationError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Utils/Errors/ValidationErrors/UserFieldsValidationError.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/tsconfig.json" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/AccessError.js" afterPath="$PROJECT_DIR$/Utils/Errors/AccessError.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/ConflictError.js" afterPath="$PROJECT_DIR$/Utils/Errors/ConflictError.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/ConflictErrors/MandatoryFieldError.js" afterPath="$PROJECT_DIR$/Utils/Errors/ConflictErrors/MandatoryFieldError.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/ConflictErrors/UniqueError.js" afterPath="$PROJECT_DIR$/Utils/Errors/ConflictErrors/UniqueError.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/NotFoundError.js" afterPath="$PROJECT_DIR$/Utils/Errors/NotFoundError.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/NotFoundErrors/ExistingError.js" afterPath="$PROJECT_DIR$/Utils/Errors/NotFoundErrors/ExistingError.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Errors/ValidationError.js" afterPath="$PROJECT_DIR$/Utils/PasswordHash.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/middleWares/adminRequaire.js" afterPath="$PROJECT_DIR$/Utils/middleWares/adminRequaire.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/middleWares/authRequaire.js" afterPath="$PROJECT_DIR$/Utils/middleWares/authRequaire.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/routes/sighnInPage.js" afterPath="$PROJECT_DIR$/routes/logIn.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Validators/user.js" afterPath="$PROJECT_DIR$/Validators/user.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/siteHandlePage.js" afterPath="$PROJECT_DIR$/routes/siteHandlePage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="devicetype.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="devicetype.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/devicetype.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -80,16 +72,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pagecontrol.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/pagecontrol.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="30" lean-forward="false" selection-start-line="7" selection-start-column="30" selection-end-line="7" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -183,7 +165,6 @@
         <option value="$PROJECT_DIR$/Errors/NotFoundErrors/ExistingError.js" />
         <option value="$PROJECT_DIR$/Errors/NotFoundError.js" />
         <option value="$PROJECT_DIR$/Errors/AccessError.js" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Errors/ValidationErrors/CreateValidError.js" />
         <option value="$PROJECT_DIR$/Errors/ValidationError.js" />
         <option value="$PROJECT_DIR$/Errors/ValidationErrors/UserFieldsValidationError.js" />
@@ -210,6 +191,7 @@
         <option value="$PROJECT_DIR$/models/pagecontrol.js" />
         <option value="$PROJECT_DIR$/migrations/20170727140128-create-page-control.js" />
         <option value="$PROJECT_DIR$/migrations/20170727141134-create-page-control.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -385,17 +367,18 @@
       <workItem from="1500962768772" duration="13707000" />
       <workItem from="1500984404766" duration="10379000" />
       <workItem from="1501049285484" duration="26379000" />
-      <workItem from="1501136472339" duration="24432000" />
+      <workItem from="1501136472339" duration="24783000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94708000" />
+    <option name="totallyTimeSpent" value="95059000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="25" width="1372" height="746" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20371747" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20371747" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -468,14 +451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="14" lean-forward="false" selection-start-line="0" selection-start-column="14" selection-end-line="0" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -852,6 +827,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
           <folding />
         </state>
       </provider>
