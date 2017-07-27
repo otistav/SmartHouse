@@ -3,7 +3,7 @@ class AccessError extends Error{
         super();
         this.errorName = 'Access Error!';
         this.message = this.errorName + " You are not administrator!";
-        this.status = 404;
+        this.status = 401;
     }
 }
 

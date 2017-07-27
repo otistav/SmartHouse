@@ -6,6 +6,7 @@ var db = require('../models');
 var MandatoryFieldError = require('../Errors/ConflictErrors/MandatoryFieldError');
 var ExistingError = require('../Errors/NotFoundErrors/ExistingError');
 var AccessError = require('../Errors/AccessError');
+var userValidator = require('../Validators/user');
 
 /* GET users listing. */
 router.get('/:id', authRequaire, function(req, res, next) {
@@ -55,6 +56,7 @@ router.patch('/:id',adminRequaire, function (req, res, next) {
 });
 
 router.post('/',adminRequaire,function (req, res, next) {
+    userValidator.asCreate(req.body);
     db.user.create({
         login: req.body.login,
         firstName: req.body.firstName,
