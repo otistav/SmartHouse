@@ -1,11 +1,12 @@
 let NotFoundError = require('../NotFoundError');
 
 class ExistingError extends NotFoundError{
-    constructor(id){
+    constructor(id, name){
         super();
         this.errorName = 'Existing Error!';
         this.id = id;
-        this.message = this.errorName + ' Error! User with id ' + this.id + ' doesnt exist!';
+        this.name = name;
+        this.message = this.errorName + ' Error!' + this.name + ' with id ' + this.id + ' doesnt exist!';
 
     }
 }

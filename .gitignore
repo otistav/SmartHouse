@@ -1,1 +1,6 @@
 /node_modules
+Будет удалено .idea/fileTemplates/
+Будет удалено .idea/inspectionProfiles/
+Будет удалено Utils/Errors/AccessErrors/
+Будет удалено public/images/
+Будет удалено public/javascripts/

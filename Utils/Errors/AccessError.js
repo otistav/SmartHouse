@@ -1,4 +1,5 @@
-class AccessError extends Error{
+var HTTPError = require('./HTTPError');
+class AccessError extends HTTPError{
     constructor(){
         super();
         this.errorName = 'Access Error!';

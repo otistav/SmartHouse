@@ -1,4 +1,5 @@
-class ConflictError extends Error{
+var HTTPError = require('./HTTPError');
+class ConflictError extends HTTPError{
     constructor(){
         super();
         this.errorName = 'Conflict Error!';

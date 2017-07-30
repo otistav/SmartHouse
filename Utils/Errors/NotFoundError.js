@@ -1,4 +1,5 @@
-class NotFoundError extends Error{
+var HTTPError = require('./HTTPError');
+class NotFoundError extends HTTPError{
     constructor(){
         super();
         this.errorName = 'Not Found Error!';

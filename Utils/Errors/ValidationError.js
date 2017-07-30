@@ -1,4 +1,5 @@
-class ValidationError extends Error{
+var HTTPError = require('./HTTPError');
+class ValidationError extends HTTPError{
     constructor(){
         super();
         this.errorName = 'Validation Error!';

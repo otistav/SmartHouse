@@ -1,7 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var controlType = sequelize.define('controlType', {
-    name: DataTypes.STRING
+    uuid: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
+    },
+    name: DataTypes.STRING,
   }, {
     classMethods: {
       associate: function(models) {

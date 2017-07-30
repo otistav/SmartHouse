@@ -1,7 +1,12 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
   var deviceType = sequelize.define('deviceType', {
-    name: DataTypes.STRING
+    uuid: {
+      type: DataTypes.UUID,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4
+    },
+    name: DataTypes.STRING,
   }, {
     classMethods: {
       associate: function(models) {
