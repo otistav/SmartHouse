@@ -25,7 +25,6 @@ router.post('/',adminRequaire,function (req, res, next) {
     }).then(() => {
         res.status(200).send('connection between page and control created successfully!')
     }).catch(err => {
-        console.log(typeof err.name);
         if (err.name === 'SequelizeForeignKeyConstraintError')
           err = new BadRequestError();
 

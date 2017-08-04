@@ -30,3 +30,14 @@ exports.asUpdate = (data) => {
         throw new UserFieldsValidationError(message)
     }
 };
+
+exports.asLogin = (data) => {
+  const schema = Joi.object().keys({
+    username: Joi.string().required(),
+    password: Joi.string().required()
+  });
+  if(Joi.validate(data,schema).error) {
+    let message = Joi.validate(data, schema).error.details[0].message;
+    throw new UserFieldsValidationError(message)
+  }
+};

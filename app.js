@@ -18,6 +18,7 @@ var pageControls = require('./routes/pageControls');
 var deviceTypes = require('./routes/deviceTypes');
 var controlTypes = require('./routes/controlTypes');
 var HTTPError = require('./Utils/Errors/HTTPError');
+var findMe = require('./routes/findMe');
 
 
 
@@ -52,6 +53,7 @@ app.use('/devices', devices);
 app.use('/pageControls', pageControls);
 app.use('/deviceTypes', deviceTypes);
 app.use('/controlTypes', controlTypes);
+app.use('/findMe', findMe);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -65,10 +67,9 @@ app.use(function(err, req, res, next) {
   if (err instanceof HTTPError) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-    // render the error page
+    console.log(err.message);
     res.status(err.status);
-    res.render('error');
+    res.json(err);
   }
   else {
     res.locals.message = err.message;

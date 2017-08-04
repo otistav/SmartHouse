@@ -2,9 +2,12 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('deviceTypes',[{
-      name: 'device1',
-      uuid: '246331ff-d18c-44d2-beb5-405f53c05d4c',
+    return queryInterface.bulkInsert('icons',[{
+      id: 4,
+      name: 'myicon',
+      path: 'as',
+      icon: 'wqer',
+      sourceText: 'qweffsa',
       createdAt: new Date(),
       updatedAt: new Date(),
     },

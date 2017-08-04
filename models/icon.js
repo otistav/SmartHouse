@@ -1,11 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var control = sequelize.define('control', {
+  var icon = sequelize.define('icon', {
     name: DataTypes.STRING,
-    x_size: DataTypes.INTEGER,
-    y_size: DataTypes.INTEGER,
-    x: DataTypes.INTEGER,
-    y: DataTypes.INTEGER,
+    path: DataTypes.STRING,
+    icon: DataTypes.STRING,
+    sourceText: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
@@ -13,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return control;
+  return icon;
 };
