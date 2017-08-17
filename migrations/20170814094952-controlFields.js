@@ -13,10 +13,13 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
-      x_size: Sequelize.INTEGER,
-      y_size: Sequelize.INTEGER,
-      x: Sequelize.INTEGER,
-      y: Sequelize.INTEGER,
+      typeUUID: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'controlTypes',
+          key: 'uuid'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -1,3 +1,4 @@
+var AccessError = require('../../Utils/Errors/AccessError');
 function adminRequire(req, res, next) {
     const user = req.session.user;
 
@@ -5,7 +6,7 @@ function adminRequire(req, res, next) {
         next();
     }
     else {
-        res.status(403).send('Sorry, you are just user. Please, sigh in as admin.')
+        throw new AccessError()
     }
 
 }

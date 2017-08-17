@@ -8,6 +8,8 @@ var ExistingError = require('../Utils/Errors/NotFoundErrors/ExistingError');
 var AccessError = require('../Utils/Errors/AccessError');
 var userValidator = require('../Validators/user');
 var hashThePassword = require('../Utils/PasswordHash');
+var DeleteError = require('../Utils/Errors/ConflictErrors/DeleteError');
+var IsAdminError =require('../Utils/Errors/ConflictErrors/IsAdminError');
 
 
 /* GET users listing. */
@@ -40,21 +42,24 @@ router.get('/',adminRequaire,function (req, res, next) {
 });
 
 router.patch('/:id',adminRequaire, function (req, res, next) {
-    let id = req.params.id;
+    let id = Number(req.params.id);
+    console.log(typeof id, typeof req.session.user.id, req.body.isAdmin);
     userValidator.asUpdate(req.body);
 
     Promise.resolve().then(()=>{
-        if(req.session.id === id && req.body.isAdmin) throw new Error('you cant delete yourself');
+
+        if(req.session.user.id === id && req.body.isAdmin===false) throw new IsAdminError();
         return db.user.findById(id);
     }).then(user => {
         if (!user) throw new ExistingError(req.params.id, 'user ');
         if (req.body.lastName) user.lastName = req.body.lastName;
         if (req.body.firstName) user.firstName = req.body.firstName;
-        if (req.body.isAdmin) user.isAdmin = req.body.isAdmin;
+        if (req.body.login) user.login = req.body.login;
+        user.isAdmin = req.body.isAdmin;
         if (req.body.password) user.password = hashThePassword.cryptoThePassword(req.body.password);
         return user.save();
-    }).then(()=> {
-        res.send('user edited!');
+    }).then((user)=> {
+        res.send(user);
     }).catch(err => {
         next(err);
     })
@@ -62,7 +67,7 @@ router.patch('/:id',adminRequaire, function (req, res, next) {
 });
 
 router.post('/',adminRequaire,function (req, res, next) {
-    // userValidator.asCreate(req.body);
+    userValidator.asCreate(req.body);
     let hashPass = hashThePassword.cryptoThePassword(req.body.password);
     db.user.create({
         login: req.body.login,
@@ -79,9 +84,10 @@ router.post('/',adminRequaire,function (req, res, next) {
 
 router.delete('/:id',adminRequaire,function (req, res, next) {
     let id = Number(req.params.id);
+    console.log(typeof id,typeof req.session.user.id);
 
     if (req.session.user.id === id) {
-        next();
+        throw new  DeleteError()
     }
     else {
         console.log(req.params.id);

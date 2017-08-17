@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('icons', {
+    return queryInterface.createTable('devices', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,16 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
+
       },
-      path: {
-        type: Sequelize.STRING
-      },
-      icon: {
-        type: Sequelize.STRING
-      },
-      sourceText: {
-        type: Sequelize.STRING
+      typeUUID: {
+        type: Sequelize.UUID,
+        references: {
+          model: 'deviceTypes',
+          key: 'uuid'
+        }
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +31,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('icons');
+    return queryInterface.dropTable('devices');
   }
 };

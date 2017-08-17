@@ -6,6 +6,7 @@ var db = require('../models');
 var MandatoryFieldError = require('../Utils/Errors/ConflictErrors/MandatoryFieldError');
 var ExistingError = require('../Utils/Errors/NotFoundErrors/ExistingError');
 var AccessError = require('../Utils/Errors/AccessError');
+var deviceValidator = require('../Validators/device');
 
 
 router.get('/', authRequaire, function (req, res, next) {
@@ -19,7 +20,7 @@ router.get('/', authRequaire, function (req, res, next) {
 });
 
 router.get('/:id', authRequaire, function (req, res, next) {
-    let id = req.params.id;
+    let id = Number(req.params.id);
 
     db.device.findById(id).then(device => {
         if (!device) throw new ExistingError(id, 'device ');
@@ -31,9 +32,10 @@ router.get('/:id', authRequaire, function (req, res, next) {
 });
 
 router.post('/',adminRequaire,function (req, res, next) {
-
+    deviceValidator.asCreate(req.body);
     db.device.create({
-        name: req.body.name
+      name: req.body.name,
+      typeUUID: req.body.typeUUID,
     }).then(()=> {
         res.status(200).send("ok")
     }).catch((err)=> {
@@ -58,10 +60,12 @@ router.delete('/:id',adminRequaire,function (req, res, next) {
 
 router.patch('/:id',adminRequaire, function (req, res, next) {
     let id = req.params.id;
+    deviceValidator.asUpdate(req.body);
     db.device.findById(id).then(device => {
 
         if (!device) throw new ExistingError(id, 'device ');
         if(req.body.name) device.name = req.body.name;
+        if (req.body.typeUUID) device.typeUUID = req.body.typeUUID;
         return device.save();
 
     }).then(() => {

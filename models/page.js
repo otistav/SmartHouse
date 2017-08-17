@@ -5,12 +5,11 @@ module.exports = function(sequelize, DataTypes) {
         type:DataTypes.STRING,
         unique: true
     },
-    icon: DataTypes.STRING,
     caption: DataTypes.STRING,
-    x_size: DataTypes.INTEGER,
-    y_size: DataTypes.INTEGER,
-    x: DataTypes.INTEGER,
-    y: DataTypes.INTEGER,
+    width: DataTypes.INTEGER,
+    height: DataTypes.INTEGER,
+    position_x: DataTypes.INTEGER,
+    position_y: DataTypes.INTEGER,
     iconID: DataTypes.INTEGER,
 
   }, {
@@ -20,5 +19,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
+  // page.associate = function(models) {
+  //   // associations can be defined here
+  //   console.log("THIS IS ASSOCIATION");
+  //   page.(models.icon, {as: 'icons'})
+  // };
   return page;
 };

@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var io = require('socket.io')
 
+var getPageControls = require('./routes/getPageControls');
 var session = require('express-session');
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -12,6 +14,7 @@ var signInPage = require('./routes/logIn');
 var siteHandlePage = require('./routes/siteHandlePage');
 var logOutPage = require('./routes/logOutPage');
 var pages = require('./routes/pages');
+var icons = require('./routes/icons');
 var controls = require('./routes/controls');
 var devices = require('./routes/devices');
 var pageControls = require('./routes/pageControls');
@@ -23,6 +26,8 @@ var findMe = require('./routes/findMe');
 
 
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -54,6 +59,8 @@ app.use('/pageControls', pageControls);
 app.use('/deviceTypes', deviceTypes);
 app.use('/controlTypes', controlTypes);
 app.use('/findMe', findMe);
+app.use('/icons', icons);
+app.use('/getPageControls', getPageControls);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -75,11 +82,10 @@ app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-    // render the error page
     res.status(500);
-    res.render('error');
+    res.json(err)
   }
 
 });
 
-module.exports = app;
+module.exports = {app: app, server: server};

@@ -20,12 +20,11 @@ module.exports = {
         type: Sequelize.STRING,
         unique: true
       },
-      icon: Sequelize.STRING,
       caption: Sequelize.STRING,
-      x_size: Sequelize.INTEGER,
-      y_size: Sequelize.INTEGER,
-      x: Sequelize.INTEGER,
-      y: Sequelize.INTEGER,
+      width: Sequelize.INTEGER,
+      height: Sequelize.INTEGER,
+      position_x: Sequelize.INTEGER,
+      position_y: Sequelize.INTEGER,
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

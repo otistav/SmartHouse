@@ -7,6 +7,7 @@ var ServerError = require('../Utils/Errors/ServerError');
 var MandatoryFieldError = require('../Utils/Errors/ConflictErrors/MandatoryFieldError');
 var ExistingError = require('../Utils/Errors/NotFoundErrors/ExistingError');
 var AccessError = require('../Utils/Errors/AccessError');
+var controlValidator = require('../Validators/control');
 
 
 router.get('/', authRequaire, function (req, res, next) {
@@ -30,13 +31,10 @@ router.get('/:id', authRequaire, function (req, res, next) {
 });
 
 router.post('/', adminRequaire, function (req, res, next) {
-
+    controlValidator.asCreate(req.body);
     db.control.create({
       name: req.body.name,
-      x_size: req.body.x_size,
-      y_size: req.body.y_size,
-      x: req.body.x,
-      y: req.body.y
+      typeUUID: req.body.typeUUID,
     }).then(()=> {
       res.status(200).send("ok")
     }).catch((err)=> {
@@ -58,15 +56,13 @@ router.delete('/:id', adminRequaire, function (req, res, next) {
 });
 
 router.patch('/:id', adminRequaire, function (req, res, next) {
-    let id = req.params.id;
+    let id = Number(req.params.id)
+    controlValidator.asUpdate(req.body);
     db.control.findById(id).then(control => {
 
       if (!control) throw new ExistingError(id, 'control');
       if(req.body.name) control.name = req.body.name;
-      if(req.body.x_size) control.x_size = req.body.x_size;
-      if(req.body.y_size) control.y_size = req.body.y_size;
-      if(req.body.x) control.x = req.body.x;
-      if(req.body.y) control.y = req.body.y;
+      if (req.body.typeUUID) control.typeUUID = req.body.typeUUID;
       return control.save();
 
     }).then(() => {

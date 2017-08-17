@@ -35,12 +35,11 @@ router.get('/:id', authRequaire, function (req, res, next) {
 router.post('/',adminRequaire,function (req, res, next) {
   db.page.create({
     name: req.body.name,
-    icon: req.body.icon,
     caption: req.body.caption,
-    x_size: req.body.x_size,
-    y_size: req.body.y_size,
-    x: req.body.x,
-    y: req.body.y,
+    width: req.body.width,
+    height: req.body.height,
+    position_x: req.body.position_x,
+    position_y: req.body.position_y,
     iconID: req.body.iconID,
   }).then(()=> {
     res.status(200).send("ok")
@@ -56,7 +55,6 @@ router.post('/',adminRequaire,function (req, res, next) {
 
 router.delete('/:id',adminRequaire,function (req, res, next) {
   let id = req.params.id;
-  if (!req.query.force) throw new Error('alarm!');
 
   db.pageControl.destroy({where: {pageID: id}}).then(() => {
 
@@ -70,10 +68,10 @@ router.patch('/:id',adminRequaire, function (req, res, next) {
 
       if (!page) throw new ExistingError(id, 'page ');
       if (req.body.name) page.name = req.body.name;
-      if (req.body.x_size) page.x_size = req.body.x_size;
-      if (req.body.y_size) page.y_size = req.body.y_size;
-      if (req.body.x) page.x = req.body.x;
-      if (req.body.y) page.y = req.body.y;
+      if (req.body.width) page.width = req.body.width;
+      if (req.body.height) page.height = req.body.height;
+      if (req.body.position_x) page.position_x = req.body.position_x;
+      if (req.body.position_y) page.position_y = req.body.position_y;
       if (req.body.iconID) page.iconID = req.body.iconID;
       if (req.body.caption) page.caption = req.body.caption;
       return page.save();
