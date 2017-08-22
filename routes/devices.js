@@ -60,12 +60,13 @@ router.delete('/:id',adminRequaire,function (req, res, next) {
 
 router.patch('/:id',adminRequaire, function (req, res, next) {
     let id = req.params.id;
-    deviceValidator.asUpdate(req.body);
+    // deviceValidator.asUpdate(req.body);
     db.device.findById(id).then(device => {
 
         if (!device) throw new ExistingError(id, 'device ');
         if(req.body.name) device.name = req.body.name;
         if (req.body.typeUUID) device.typeUUID = req.body.typeUUID;
+        if (req.body.propFunction) device.propFunction = req.body.propFunction;
         return device.save();
 
     }).then(() => {

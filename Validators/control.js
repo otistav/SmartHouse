@@ -16,8 +16,8 @@ exports.asCreate = (data) => {
 
 exports.asUpdate = (data) => {
   const schema = Joi.object().keys({
-    name: Joi.string().min(1).max(30).required(),
-    typeUUID: Joi.string().required()
+    name: Joi.string().min(1).max(30),
+    typeUUID: Joi.string()
   });
 
   if(Joi.validate(data,schema).error){

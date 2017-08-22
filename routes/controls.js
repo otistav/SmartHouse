@@ -35,6 +35,7 @@ router.post('/', adminRequaire, function (req, res, next) {
     db.control.create({
       name: req.body.name,
       typeUUID: req.body.typeUUID,
+      propFunction: req.body.propFunction
     }).then(()=> {
       res.status(200).send("ok")
     }).catch((err)=> {
@@ -56,13 +57,15 @@ router.delete('/:id', adminRequaire, function (req, res, next) {
 });
 
 router.patch('/:id', adminRequaire, function (req, res, next) {
-    let id = Number(req.params.id)
-    controlValidator.asUpdate(req.body);
+    console.log(req.body);
+    let id = Number(req.params.id);
+    // controlValidator.asUpdate(req.body);
     db.control.findById(id).then(control => {
 
       if (!control) throw new ExistingError(id, 'control');
       if(req.body.name) control.name = req.body.name;
       if (req.body.typeUUID) control.typeUUID = req.body.typeUUID;
+      if (req.body.propFunction) control.propFunction = req.body.propFunction;
       return control.save();
 
     }).then(() => {

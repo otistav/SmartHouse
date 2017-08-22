@@ -1,9 +1,10 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var device = sequelize.define('device', {
-    name: DataTypes.STRING,
-    typeUUID: DataTypes.UUID,
-    propFunction: DataTypes.TEXT
+  var rule = sequelize.define('rule', {
+    sourceID: DataTypes.INTEGER,
+    sourceType: DataTypes.STRING,
+    event: DataTypes.STRING,
+    func: DataTypes.TEXT
   }, {
     classMethods: {
       associate: function(models) {
@@ -11,5 +12,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return device;
+  return rule;
 };

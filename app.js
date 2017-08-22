@@ -4,7 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var io = require('socket.io')
+var io = require('socket.io');
+var redux = require('./serverRedux');
+var getState = require('./routes/getState');
 
 var getPageControls = require('./routes/getPageControls');
 var session = require('express-session');
@@ -22,12 +24,15 @@ var deviceTypes = require('./routes/deviceTypes');
 var controlTypes = require('./routes/controlTypes');
 var HTTPError = require('./Utils/Errors/HTTPError');
 var findMe = require('./routes/findMe');
+var socket = require('./routes/socket');
+var rules = require('./routes/rules');
 
 
 
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,6 +53,13 @@ app.use(session({
 }));
 
 app.use('/', index);
+io.on('connection', function (socket) {
+    socket.on('light', (data) => {
+      var result = redux.editStore(data.status,data.type);
+      io.sockets.emit('light', result)
+    })
+});
+
 app.use('/users', users);
 app.use('/signin', signInPage);
 app.use('/sitehandlepage', siteHandlePage);
@@ -59,8 +71,11 @@ app.use('/pageControls', pageControls);
 app.use('/deviceTypes', deviceTypes);
 app.use('/controlTypes', controlTypes);
 app.use('/findMe', findMe);
+app.use('/socket', socket);
 app.use('/icons', icons);
 app.use('/getPageControls', getPageControls);
+app.use('/getState', getState);
+app.use('/rules', rules);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
