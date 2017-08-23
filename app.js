@@ -27,8 +27,6 @@ var findMe = require('./routes/findMe');
 var socket = require('./routes/socket');
 var rules = require('./routes/rules');
 
-
-
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -54,10 +52,34 @@ app.use(session({
 
 app.use('/', index);
 io.on('connection', function (socket) {
-    socket.on('light', (data) => {
-      var result = redux.editStore(data.status,data.type);
-      io.sockets.emit('light', result)
+    socket.on('redux', (data) => {
+      if (data.storeReq === true) {
+        io.sockets.emit('redux', redux.getState())
+      }
+      else {
+        console.log(data.payload)
+        redux.dispatchActions(data.id, data.item, data.event, data.payload).then(() => {
+          console.log(redux.getState())
+        });
+        socket.on('device', (data) => {
+          console.log('this is payload',data.payload);
+          redux.dispatchActionFromDevice(data)
+        })
+      }
+    });
+
+    redux.subscribe((state) =>
+    {
+
+      io.sockets.emit('redux', state);
+    });
+
+    redux.subscribeDeviceChanges((id, change) => {
+      console.log("this is id and changes", id, change);
+      io.sockets.emit('device', {id: id, change: change})
     })
+
+
 });
 
 app.use('/users', users);

@@ -57,8 +57,11 @@ router.delete('/:id',adminRequaire,function (req, res, next) {
   let id = req.params.id;
 
   db.pageControl.destroy({where: {pageID: id}}).then(() => {
-
-    res.send('ok')
+    db.page.findById(id).then(page => {
+      page.destroy().then(() => {
+        res.status(200).send('ok')
+      })
+    });
   })
 });
 
