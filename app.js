@@ -57,16 +57,18 @@ io.on('connection', function (socket) {
         io.sockets.emit('redux', redux.getState())
       }
       else {
-        console.log(data.payload)
+        console.log(data.payload);
         redux.dispatchActions(data.id, data.item, data.event, data.payload).then(() => {
           console.log(redux.getState())
         });
-        socket.on('device', (data) => {
-          console.log('this is payload',data.payload);
-          redux.dispatchActionFromDevice(data)
-        })
+
       }
     });
+  socket.on('device', (data) => {
+    console.log('this is payload',data.payload);
+    console.log("this is state", redux.getState());
+    redux.dispatchActionFromDevice(data)
+  });
 
     redux.subscribe((state) =>
     {

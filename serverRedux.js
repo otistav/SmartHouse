@@ -49,9 +49,6 @@ exports.subscribeDeviceChanges = (cb) => {
           if (isChanged(newProps, prevState[(device.id).toString()], device)) {
             cb(device.id, newProps)
           }
-          console.log("this is prevstate", prevState);
-
-          // Object.assign(prevState, {[device.id]: newProps});
           prevState[device.id] = newProps;
         }
 
@@ -62,6 +59,7 @@ exports.subscribeDeviceChanges = (cb) => {
 
 exports.dispatchActionFromDevice = (data) => {
   return db.rule.findAll({where: {sourceID: data.id, sourceType: 'device'}}).then((rules) => {
+    console.log("this is rules", rules);
     rules.forEach(rule => {
       let func = new Function('device', 'payload', 'state', rule.func);
       let result = func(data.device, data.payload, store.getState());
@@ -76,7 +74,6 @@ exports.dispatchActions = (id, element, event, payload) => {
     rules.forEach(item => {
       let func = new Function('item', 'event', 'payload', 'state', item.func);
       let result = func(element, event, payload, store.getState());
-      console.log("Dispatch");
       store.dispatch({type: '',payload:result});
     })
   })
